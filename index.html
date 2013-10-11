@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+	<html>
+	<head>
+   <!-- <meta http-equiv="X-UA-Compatible" content="chrome=1" />-->
+   <meta charset="utf-8"/>
+   
+   
+   
+   		<script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+		<script type="text/javascript" src="dao.js"></script>
+		<script type="text/javascript" src="controler.js"></script>
+        <script type="text/javascript" src="device.js"></script>
+      	<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+      	<script type="text/javascript" src="jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript" src="geoloc.js"></script>
+        
+      	<link rel="stylesheet" href="jquery.mobile-1.3.2.min.css" />
+      
+      <!-- Carrega Classe AGENDA -->
+      	<!--<script type="text/javascript" src="js/agenda.js"></script> -->
+
+ 		<script type="text/javascript">
+          
+		  
+	  $(document).ready(function(){
+		var conexao = new Conexao();
+		model = new DAOCompras();
+		controler = new Controler();
+	  });	
+
+	<!---------- device -------------------->  
+		   function device() {   
+            oMyDevice = new MyDevice();
+            
+            oMyDevice.setName(device.name);
+            oMyDevice.setCordova(device.cordova);
+            oMyDevice.setPlatform(device.platform);
+            oMyDevice.setUuid(device.uuid);
+            oMyDevice.setVersion(device.version);
+            oMyDevice.setModel(device.model);
+            
+            alert (oMyDevice.toString());
+         }
+	<!---- Verificar Conexão ----->
+         function connection() {
+            checkConnection();
+         }
+   
+		   
+		   
+       </script>
+    </head>
+	<header></header>
+	<body>
+    <!--<script language="javascript">
+         if(typeof(Storage)!=="undefined"){
+           alert ("Este browser suporta HTML 5 Web Storage!");
+         } else {
+           alert ("Este browser não suporta HTML 5 Web Storage!");
+         }
+       </script>-->
+       <div data-role="page" data-theme="a" id="form">
+       		<div data-role="header">
+				<h1>Web Lista de Compras</h1>
+			</div>
+            <div data-role="content" data-role="fieldcontain">
+                novo indice:
+                <input type="text" id="txt1"/>
+                
+                Novo Item:                
+                <input type="text" id="txt2" />
+                
+                Quantidade:                
+                <input type="text" id="txt3" />
+                
+                <div data-role="controlgroup" >
+                <a href="#home"  data-theme="b" data-role="button" data-transition="slideup" onClick="controler.inserir()">Adicionar item</a>        		<a href="#home"  data-theme="b" data-role="button" data-transition="slideup" onClick="controler.ler()">Ler Valor</a>
+                <a href="#home"  data-theme="b" data-role="button" data-transition="slideup" onClick="controler.remover()">Remover item</a>
+                <a href="#home"  data-theme="b" data-role="button" data-transition="slideup" onClick="controler.limpar()">Remover todos</a>
+                  </div>
+                
+                <a href="#"  data-role="button" data-theme="e" data-transition="slideup" onClick="device()">Device</a>
+                <a href="#"  data-role="button" data-theme="e" data-transition="slideup" onClick="connection()">Conexão</a>
+                <a href="#"  data-role="button" data-theme="e" data-transition="slideup" onClick="">Câmera</a>
+                <a href="local"  data-role="button" data-theme="e" data-transition="slideup" >Geolocalização</a>
+                
+               <!-- <div class="ui-block-a"><button type="submit" data-theme="a" onClick="device()">Dispositivo</button></div>     
+                <div class="ui-block-b"><button type="submit" data-theme="d" onClick="connection()">Conexão</button></div>
+-->
+                
+                <!--<button id="btnAdicionar" onClick="controler.inserir()" >Adicionar item</button>
+                <button id="btnLer" onClick="controler.ler()">Ler valor</button>
+                <button id="btnRemover" onClick="controler.remover()">Remover item</button>
+                <button id="btnLimpar" onClick="controler.limpar()">Remover todos</button>-->
+              
+                	<!--<div border="1" id="divLista">
+       				</div>-->
+            </div>
+            <div data-role="footer">
+				<p>Rodapé</p>
+			</div>
+        </div>
+       <!----------------------pagina location----------------------------->
+       <div data-role="page" data-theme="e" id="local">
+       		<div data-role="header"> Geolocalização
+            </div>
+            <div data-role="fieldcontain" align="center">
+            <p id="geolocation"> loading</p>
+            <a href="#"  data-role="button" data-theme="e" onClick="clearWatch()" >limpar</a>
+            <a href="home"  data-role="button" data-theme="e" >voltar</a>            
+            </div>
+            <div data-role="footer">
+            </div>
+       </div>
+       <!------------------------------------------------------------------>
+        <div data-role="page" data-theme="e" id="home">
+        	<div data-role="header">
+				<h1>Web Lista de Compras</h1>
+			</div>
+            <div data-role="fieldcontain" align="center">
+            <table>
+            <thead>
+            <tr><th>Produto </th> 
+            	<th>Quantidade</th>
+            </tr>
+            
+        	<tbody border="1" id="divLista">
+       		</tbody>
+            </table>
+            </div>
+            <a href="#form"  data-theme="e" data-role="button"
+                			data-transition="slideup" data-mini="true">Faça uma ação</a>
+       	</div>
+	        <div data-role="footer">
+				<h1>Web Lista de Compras</h1>
+			</div>
+            
+    </body>
+</html>
