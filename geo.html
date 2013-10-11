@@ -1,22 +1,19 @@
-// JavaScript Document
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Device Properties Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
     // Wait for device API libraries to load
     //
-	function inicia (){
-		document.addEventListener("deviceready", onDeviceReady, false);
-		//var watchID = null;
-		
-		
-		//alert (watchID());
-		}
-	
-    
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     // device APIs are available
     //
     function onDeviceReady() {
-		var watchID = null;
-		var options = { timeout: 30000}
-        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
 
     // onSuccess Geolocation
@@ -25,19 +22,12 @@
         var element = document.getElementById('geolocation');
         element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
-                            /*'Altitude: '         + position.coords.altitude              + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
                             'Accuracy: '           + position.coords.accuracy              + '<br />' +
                             'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
                             'Heading: '            + position.coords.heading               + '<br />' +
-                            'Speed: '              + position.coords.speed                 + '<br />' +*/
+                            'Speed: '              + position.coords.speed                 + '<br />' +
                             'Timestamp: '          + position.timestamp                    + '<br />';
-    }
-	
-	function clearWatch() {
-        if (watchID != null) {
-            navigator.geolocation.clearWatch(watchID);
-            watchID = null;
-        }
     }
 
     // onError Callback receives a PositionError object
@@ -46,3 +36,10 @@
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+
+    </script>
+  </head>
+  <body>
+    <p id="geolocation">Finding geolocation...</p>
+  </body>
+</html>
