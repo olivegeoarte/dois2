@@ -3,10 +3,10 @@
     //
 	function inicia (){
 		document.addEventListener("deviceready", onDeviceReady, false);
-		var watchID = null;
+		//var watchID = null;
 		
 		
-		alert (element.innerHTML());
+		alert (element.innerHTML.toString());
 		}
 	
     
@@ -14,6 +14,7 @@
     // device APIs are available
     //
     function onDeviceReady() {
+		var watchID = null;
 		var options = { timeout: 30000}
         watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
     }
